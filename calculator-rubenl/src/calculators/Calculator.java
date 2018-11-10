@@ -3,7 +3,9 @@ package calculators;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Calculator implements ActionListener {
+import interfaces.CalculatorBasicOperations;
+
+public class Calculator implements ActionListener, CalculatorBasicOperations {
 	CalculatorGUI g;
 	public Calculator(int type) {
 		if (type == 1) {
@@ -21,6 +23,12 @@ public class Calculator implements ActionListener {
 		if (e.getSource() == g.oneb)
 			g.textf.setText(g.textf.getText()+"1");
 		
+	}
+
+	@Override
+	public double add(double number1, double number2) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

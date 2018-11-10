@@ -1,5 +1,6 @@
 package calculators;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -7,6 +8,7 @@ import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -42,14 +44,25 @@ public class CalculatorGUI {
 	JButton commab;
 	JButton plusb;
 	JButton equalsb;
+	JPanel jcp;
 	
 	public CalculatorGUI() {
 		jf = new JFrame();
-		jf.setResizable(false);
+		
+		jf.getContentPane().setLayout(new BorderLayout());
+		
+		
+		//jf.setResizable(false);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		jf.setSize(395, 391);
+		jf.setSize(398, 391);
 		jf.setLocationRelativeTo(null);
+		
+		
+		jcp = new JPanel();
+		
+		
+		
 		
 		gbl = new GridBagLayout();
 		gbl.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
@@ -68,6 +81,7 @@ public class CalculatorGUI {
 		gbc_textf.gridx = 1;
 		gbc_textf.gridy = 1;
 		jf.getContentPane().add(textf, gbc_textf);
+		
 		textf.setColumns(10);
 		
 		memoryclearb = new JButton("MC");
