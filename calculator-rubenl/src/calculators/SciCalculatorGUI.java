@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.GridLayout;
+
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 
 import java.awt.BorderLayout;
@@ -24,6 +26,33 @@ import javax.swing.JRadioButton;
 public class SciCalculatorGUI extends CalculatorGUI {
 	JPanel jp;
 	JFrame scijf;
+	private JRadioButton radioButton;
+	private JRadioButton radioButton_1;
+	private JRadioButton radioButton_2;
+	private JButton invb;
+	private JButton lnb;
+	private JButton leftparb;
+	private JButton rightparb;
+	private JButton intb;
+	private JButton sinhb;
+	private JButton sinb;
+	private JButton x2b;
+	private JButton nib;
+	private JButton dmsb;
+	private JButton coshb;
+	private JButton cosb;
+	private JButton xtopowyb;
+	private JButton yrootxb;
+	private JButton pib;
+	private JButton tanhb;
+	private JButton tanb;
+	private JButton x3b;
+	private JButton thirdrootxb;
+	private JButton feb;
+	private JButton expb;
+	private JButton modb;
+	private JButton logb;
+	private JButton tentopownb;
 	
 	/**
 	 * @wbp.parser.entryPoint
@@ -35,7 +64,7 @@ public class SciCalculatorGUI extends CalculatorGUI {
 		super.jf.getContentPane().setLayout(new BorderLayout());
 		
 		
-		super.jf.setSize(super.jf.getWidth()+400, super.jf.getHeight());
+		super.jf.setSize(super.jf.getWidth()+350, super.jf.getHeight());
 		super.jf.getContentPane().setSize(super.jf.getContentPane().getWidth()+400, super.jf.getContentPane().getHeight());
 		
 		jp = new JPanel();
@@ -47,271 +76,257 @@ public class SciCalculatorGUI extends CalculatorGUI {
 		
 		GridBagLayout gbl_jp = new GridBagLayout();
 		gbl_jp.columnWidths = new int[] {75, 75, 75, 75, 75};
-		gbl_jp.rowHeights = new int[] {40, 40, 40, 40, 40, 40};
-		gbl_jp.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-		gbl_jp.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_jp.rowHeights = new int[] {60, 60, 60, 60, 60, 60};
+		gbl_jp.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0};
+		gbl_jp.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		jp.setLayout(gbl_jp);
 		
 		String xraised = new String("x");
 		
+		ButtonGroup bg = new ButtonGroup();
 		
-		JButton btnNewButton = new JButton("10" + "\u207F");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		
-		JRadioButton radioButton = new JRadioButton("1");
+		radioButton = new JRadioButton("1");
 		GridBagConstraints gbc_radioButton = new GridBagConstraints();
 		gbc_radioButton.insets = new Insets(0, 0, 5, 5);
 		gbc_radioButton.gridx = 0;
 		gbc_radioButton.gridy = 0;
 		jp.add(radioButton, gbc_radioButton);
+		bg.add(radioButton);
 		
-		JRadioButton radioButton_1 = new JRadioButton("2");
+		radioButton_1 = new JRadioButton("2");
 		GridBagConstraints gbc_radioButton_1 = new GridBagConstraints();
 		gbc_radioButton_1.insets = new Insets(0, 0, 5, 5);
 		gbc_radioButton_1.gridx = 1;
 		gbc_radioButton_1.gridy = 0;
 		jp.add(radioButton_1, gbc_radioButton_1);
+		bg.add(radioButton_1);
 		
-		JRadioButton radioButton_2 = new JRadioButton("3");
+		radioButton_2 = new JRadioButton("3");
 		GridBagConstraints gbc_radioButton_2 = new GridBagConstraints();
 		gbc_radioButton_2.insets = new Insets(0, 0, 5, 5);
 		gbc_radioButton_2.gridx = 2;
 		gbc_radioButton_2.gridy = 0;
 		jp.add(radioButton_2, gbc_radioButton_2);
-		
-		JButton button_16 = new JButton("10\u207F");
-		button_16.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button_16 = new GridBagConstraints();
-		gbc_button_16.fill = GridBagConstraints.BOTH;
-		gbc_button_16.insets = new Insets(0, 0, 5, 5);
-		gbc_button_16.gridx = 4;
-		gbc_button_16.gridy = 1;
-		jp.add(button_16, gbc_button_16);
-		
-		JButton button_15 = new JButton("10\u207F");
-		button_15.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button_15 = new GridBagConstraints();
-		gbc_button_15.fill = GridBagConstraints.BOTH;
-		gbc_button_15.insets = new Insets(0, 0, 5, 0);
-		gbc_button_15.gridx = 5;
-		gbc_button_15.gridy = 1;
-		jp.add(button_15, gbc_button_15);
-		
-		JButton button_22 = new JButton("10\u207F");
-		button_22.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button_22 = new GridBagConstraints();
-		gbc_button_22.fill = GridBagConstraints.BOTH;
-		gbc_button_22.insets = new Insets(0, 0, 5, 5);
-		gbc_button_22.gridx = 0;
-		gbc_button_22.gridy = 2;
-		jp.add(button_22, gbc_button_22);
-		
-		JButton button_21 = new JButton("10\u207F");
-		button_21.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button_21 = new GridBagConstraints();
-		gbc_button_21.fill = GridBagConstraints.BOTH;
-		gbc_button_21.insets = new Insets(0, 0, 5, 5);
-		gbc_button_21.gridx = 1;
-		gbc_button_21.gridy = 2;
-		jp.add(button_21, gbc_button_21);
-		
-		JButton button_20 = new JButton("10\u207F");
-		button_20.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button_20 = new GridBagConstraints();
-		gbc_button_20.fill = GridBagConstraints.BOTH;
-		gbc_button_20.insets = new Insets(0, 0, 5, 5);
-		gbc_button_20.gridx = 2;
-		gbc_button_20.gridy = 2;
-		jp.add(button_20, gbc_button_20);
-		
-		JButton button_17 = new JButton("10\u207F");
-		button_17.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button_17 = new GridBagConstraints();
-		gbc_button_17.fill = GridBagConstraints.BOTH;
-		gbc_button_17.insets = new Insets(0, 0, 5, 5);
-		gbc_button_17.gridx = 3;
-		gbc_button_17.gridy = 2;
-		jp.add(button_17, gbc_button_17);
-		
-		JButton button_19 = new JButton("10\u207F");
-		button_19.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button_19 = new GridBagConstraints();
-		gbc_button_19.fill = GridBagConstraints.BOTH;
-		gbc_button_19.insets = new Insets(0, 0, 5, 5);
-		gbc_button_19.gridx = 4;
-		gbc_button_19.gridy = 2;
-		jp.add(button_19, gbc_button_19);
-		
-		JButton button_14 = new JButton("10\u207F");
-		button_14.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button_14 = new GridBagConstraints();
-		gbc_button_14.fill = GridBagConstraints.BOTH;
-		gbc_button_14.insets = new Insets(0, 0, 5, 0);
-		gbc_button_14.gridx = 5;
-		gbc_button_14.gridy = 2;
-		jp.add(button_14, gbc_button_14);
-		
-		JButton button_23 = new JButton("10\u207F");
-		button_23.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button_23 = new GridBagConstraints();
-		gbc_button_23.fill = GridBagConstraints.BOTH;
-		gbc_button_23.insets = new Insets(0, 0, 5, 5);
-		gbc_button_23.gridx = 0;
-		gbc_button_23.gridy = 3;
-		jp.add(button_23, gbc_button_23);
+		bg.add(radioButton_2);
 		
 		
-		JButton btnNewButton_1 = new JButton("log");
-		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_1.gridx = 1;
-		gbc_btnNewButton_1.gridy = 3;
-		jp.add(btnNewButton_1, gbc_btnNewButton_1);
 		
-		JButton button_18 = new JButton("10\u207F");
-		button_18.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button_18 = new GridBagConstraints();
-		gbc_button_18.fill = GridBagConstraints.BOTH;
-		gbc_button_18.insets = new Insets(0, 0, 5, 5);
-		gbc_button_18.gridx = 2;
-		gbc_button_18.gridy = 3;
-		jp.add(button_18, gbc_button_18);
+		invb = new JButton("Inv");
+		invb.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GridBagConstraints gbc_invb = new GridBagConstraints();
+		gbc_invb.fill = GridBagConstraints.BOTH;
+		gbc_invb.insets = new Insets(0, 0, 5, 5);
+		gbc_invb.gridx = 1;
+		gbc_invb.gridy = 1;
+		jp.add(invb, gbc_invb);
 		
-		JButton button_13 = new JButton("10\u207F");
-		button_13.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button_13 = new GridBagConstraints();
-		gbc_button_13.fill = GridBagConstraints.BOTH;
-		gbc_button_13.insets = new Insets(0, 0, 5, 5);
-		gbc_button_13.gridx = 3;
-		gbc_button_13.gridy = 3;
-		jp.add(button_13, gbc_button_13);
+		lnb = new JButton("ln");
+		lnb.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GridBagConstraints gbc_lnb = new GridBagConstraints();
+		gbc_lnb.fill = GridBagConstraints.BOTH;
+		gbc_lnb.insets = new Insets(0, 0, 5, 5);
+		gbc_lnb.gridx = 2;
+		gbc_lnb.gridy = 1;
+		jp.add(lnb, gbc_lnb);
 		
-		JButton button_12 = new JButton("10\u207F");
-		button_12.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button_12 = new GridBagConstraints();
-		gbc_button_12.fill = GridBagConstraints.BOTH;
-		gbc_button_12.insets = new Insets(0, 0, 5, 5);
-		gbc_button_12.gridx = 4;
-		gbc_button_12.gridy = 3;
-		jp.add(button_12, gbc_button_12);
+		leftparb = new JButton("(");
+		leftparb.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GridBagConstraints gbc_leftparb = new GridBagConstraints();
+		gbc_leftparb.fill = GridBagConstraints.BOTH;
+		gbc_leftparb.insets = new Insets(0, 0, 5, 5);
+		gbc_leftparb.gridx = 3;
+		gbc_leftparb.gridy = 1;
+		jp.add(leftparb, gbc_leftparb);
 		
-		JButton button_11 = new JButton("10\u207F");
-		button_11.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button_11 = new GridBagConstraints();
-		gbc_button_11.fill = GridBagConstraints.BOTH;
-		gbc_button_11.insets = new Insets(0, 0, 5, 0);
-		gbc_button_11.gridx = 5;
-		gbc_button_11.gridy = 3;
-		jp.add(button_11, gbc_button_11);
+		rightparb = new JButton(")");
+		rightparb.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GridBagConstraints gbc_rightparb = new GridBagConstraints();
+		gbc_rightparb.fill = GridBagConstraints.BOTH;
+		gbc_rightparb.insets = new Insets(0, 0, 5, 5);
+		gbc_rightparb.gridx = 4;
+		gbc_rightparb.gridy = 1;
+		jp.add(rightparb, gbc_rightparb);
 		
-		JButton button_10 = new JButton("10\u207F");
-		button_10.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button_10 = new GridBagConstraints();
-		gbc_button_10.fill = GridBagConstraints.BOTH;
-		gbc_button_10.insets = new Insets(0, 0, 5, 5);
-		gbc_button_10.gridx = 0;
-		gbc_button_10.gridy = 4;
-		jp.add(button_10, gbc_button_10);
+		intb = new JButton("Int");
+		intb.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GridBagConstraints gbc_intb = new GridBagConstraints();
+		gbc_intb.fill = GridBagConstraints.BOTH;
+		gbc_intb.insets = new Insets(0, 0, 5, 5);
+		gbc_intb.gridx = 0;
+		gbc_intb.gridy = 2;
+		jp.add(intb, gbc_intb);
 		
-		JButton button_9 = new JButton("10\u207F");
-		button_9.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button_9 = new GridBagConstraints();
-		gbc_button_9.fill = GridBagConstraints.BOTH;
-		gbc_button_9.insets = new Insets(0, 0, 5, 5);
-		gbc_button_9.gridx = 1;
-		gbc_button_9.gridy = 4;
-		jp.add(button_9, gbc_button_9);
+		sinhb = new JButton("sinh");
+		sinhb.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GridBagConstraints gbc_sinhb = new GridBagConstraints();
+		gbc_sinhb.fill = GridBagConstraints.BOTH;
+		gbc_sinhb.insets = new Insets(0, 0, 5, 5);
+		gbc_sinhb.gridx = 1;
+		gbc_sinhb.gridy = 2;
+		jp.add(sinhb, gbc_sinhb);
 		
-		JButton button_8 = new JButton("10\u207F");
-		button_8.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button_8 = new GridBagConstraints();
-		gbc_button_8.fill = GridBagConstraints.BOTH;
-		gbc_button_8.insets = new Insets(0, 0, 5, 5);
-		gbc_button_8.gridx = 2;
-		gbc_button_8.gridy = 4;
-		jp.add(button_8, gbc_button_8);
+		sinb = new JButton("sin");
+		sinb.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GridBagConstraints gbc_sinb = new GridBagConstraints();
+		gbc_sinb.fill = GridBagConstraints.BOTH;
+		gbc_sinb.insets = new Insets(0, 0, 5, 5);
+		gbc_sinb.gridx = 2;
+		gbc_sinb.gridy = 2;
+		jp.add(sinb, gbc_sinb);
 		
-		JButton button_7 = new JButton("10\u207F");
-		button_7.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button_7 = new GridBagConstraints();
-		gbc_button_7.fill = GridBagConstraints.BOTH;
-		gbc_button_7.insets = new Insets(0, 0, 5, 5);
-		gbc_button_7.gridx = 3;
-		gbc_button_7.gridy = 4;
-		jp.add(button_7, gbc_button_7);
+		x2b = new JButton("x\u00B2");
+		x2b.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GridBagConstraints gbc_x2b = new GridBagConstraints();
+		gbc_x2b.fill = GridBagConstraints.BOTH;
+		gbc_x2b.insets = new Insets(0, 0, 5, 5);
+		gbc_x2b.gridx = 3;
+		gbc_x2b.gridy = 2;
+		jp.add(x2b, gbc_x2b);
 		
-		JButton button_6 = new JButton("10\u207F");
-		button_6.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button_6 = new GridBagConstraints();
-		gbc_button_6.fill = GridBagConstraints.BOTH;
-		gbc_button_6.insets = new Insets(0, 0, 5, 5);
-		gbc_button_6.gridx = 4;
-		gbc_button_6.gridy = 4;
-		jp.add(button_6, gbc_button_6);
+		nib = new JButton("n!");
+		nib.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GridBagConstraints gbc_nib = new GridBagConstraints();
+		gbc_nib.fill = GridBagConstraints.BOTH;
+		gbc_nib.insets = new Insets(0, 0, 5, 5);
+		gbc_nib.gridx = 4;
+		gbc_nib.gridy = 2;
+		jp.add(nib, gbc_nib);
 		
-		JButton button_5 = new JButton("10\u207F");
-		button_5.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button_5 = new GridBagConstraints();
-		gbc_button_5.fill = GridBagConstraints.BOTH;
-		gbc_button_5.insets = new Insets(0, 0, 5, 0);
-		gbc_button_5.gridx = 5;
-		gbc_button_5.gridy = 4;
-		jp.add(button_5, gbc_button_5);
+		dmsb = new JButton("dms");
+		dmsb.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GridBagConstraints gbc_dmsb = new GridBagConstraints();
+		gbc_dmsb.fill = GridBagConstraints.BOTH;
+		gbc_dmsb.insets = new Insets(0, 0, 5, 5);
+		gbc_dmsb.gridx = 0;
+		gbc_dmsb.gridy = 3;
+		jp.add(dmsb, gbc_dmsb);
 		
-		JButton button_4 = new JButton("10\u207F");
-		button_4.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button_4 = new GridBagConstraints();
-		gbc_button_4.fill = GridBagConstraints.BOTH;
-		gbc_button_4.insets = new Insets(0, 0, 0, 5);
-		gbc_button_4.gridx = 0;
-		gbc_button_4.gridy = 5;
-		jp.add(button_4, gbc_button_4);
+		coshb = new JButton("cosh");
+		coshb.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GridBagConstraints gbc_coshb = new GridBagConstraints();
+		gbc_coshb.fill = GridBagConstraints.BOTH;
+		gbc_coshb.insets = new Insets(0, 0, 5, 5);
+		gbc_coshb.gridx = 1;
+		gbc_coshb.gridy = 3;
+		jp.add(coshb, gbc_coshb);
 		
-		JButton button_3 = new JButton("10\u207F");
-		button_3.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button_3 = new GridBagConstraints();
-		gbc_button_3.fill = GridBagConstraints.BOTH;
-		gbc_button_3.insets = new Insets(0, 0, 0, 5);
-		gbc_button_3.gridx = 1;
-		gbc_button_3.gridy = 5;
-		jp.add(button_3, gbc_button_3);
+		cosb = new JButton("cos");
+		cosb.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GridBagConstraints gbc_cosb = new GridBagConstraints();
+		gbc_cosb.fill = GridBagConstraints.BOTH;
+		gbc_cosb.insets = new Insets(0, 0, 5, 5);
+		gbc_cosb.gridx = 2;
+		gbc_cosb.gridy = 3;
+		jp.add(cosb, gbc_cosb);
 		
-		JButton button_2 = new JButton("10\u207F");
-		button_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button_2 = new GridBagConstraints();
-		gbc_button_2.fill = GridBagConstraints.BOTH;
-		gbc_button_2.insets = new Insets(0, 0, 0, 5);
-		gbc_button_2.gridx = 2;
-		gbc_button_2.gridy = 5;
-		jp.add(button_2, gbc_button_2);
+		xtopowyb = new JButton("x^y");
+		xtopowyb.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GridBagConstraints gbc_xtopowyb = new GridBagConstraints();
+		gbc_xtopowyb.fill = GridBagConstraints.BOTH;
+		gbc_xtopowyb.insets = new Insets(0, 0, 5, 5);
+		gbc_xtopowyb.gridx = 3;
+		gbc_xtopowyb.gridy = 3;
+		jp.add(xtopowyb, gbc_xtopowyb);
 		
-		JButton button_1 = new JButton("10\u207F");
-		button_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button_1 = new GridBagConstraints();
-		gbc_button_1.fill = GridBagConstraints.BOTH;
-		gbc_button_1.insets = new Insets(0, 0, 0, 5);
-		gbc_button_1.gridx = 3;
-		gbc_button_1.gridy = 5;
-		jp.add(button_1, gbc_button_1);
+		yrootxb = new JButton("y\u221Ax");
+		yrootxb.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GridBagConstraints gbc_yrootxb = new GridBagConstraints();
+		gbc_yrootxb.fill = GridBagConstraints.BOTH;
+		gbc_yrootxb.insets = new Insets(0, 0, 5, 5);
+		gbc_yrootxb.gridx = 4;
+		gbc_yrootxb.gridy = 3;
+		jp.add(yrootxb, gbc_yrootxb);
 		
-		JButton button = new JButton("10\u207F");
-		button.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_button = new GridBagConstraints();
-		gbc_button.fill = GridBagConstraints.BOTH;
-		gbc_button.insets = new Insets(0, 0, 0, 5);
-		gbc_button.gridx = 4;
-		gbc_button.gridy = 5;
-		jp.add(button, gbc_button);
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.fill = GridBagConstraints.VERTICAL;
-		gbc_btnNewButton.gridx = 5;
-		gbc_btnNewButton.gridy = 5;
-		jp.add(btnNewButton, gbc_btnNewButton);
+		pib = new JButton("\u03C0");
+		pib.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+		GridBagConstraints gbc_pib = new GridBagConstraints();
+		gbc_pib.fill = GridBagConstraints.BOTH;
+		gbc_pib.insets = new Insets(0, 0, 5, 5);
+		gbc_pib.gridx = 0;
+		gbc_pib.gridy = 4;
+		jp.add(pib, gbc_pib);
+		
+		tanhb = new JButton("tanh");
+		tanhb.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GridBagConstraints gbc_tanhb = new GridBagConstraints();
+		gbc_tanhb.fill = GridBagConstraints.BOTH;
+		gbc_tanhb.insets = new Insets(0, 0, 5, 5);
+		gbc_tanhb.gridx = 1;
+		gbc_tanhb.gridy = 4;
+		jp.add(tanhb, gbc_tanhb);
+		
+		tanb = new JButton("tan");
+		tanb.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GridBagConstraints gbc_tanb = new GridBagConstraints();
+		gbc_tanb.fill = GridBagConstraints.BOTH;
+		gbc_tanb.insets = new Insets(0, 0, 5, 5);
+		gbc_tanb.gridx = 2;
+		gbc_tanb.gridy = 4;
+		jp.add(tanb, gbc_tanb);
+		
+		x3b = new JButton("x\u00B3");
+		x3b.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GridBagConstraints gbc_x3b = new GridBagConstraints();
+		gbc_x3b.fill = GridBagConstraints.BOTH;
+		gbc_x3b.insets = new Insets(0, 0, 5, 5);
+		gbc_x3b.gridx = 3;
+		gbc_x3b.gridy = 4;
+		jp.add(x3b, gbc_x3b);
+		
+		thirdrootxb = new JButton("\u221Bx");
+		thirdrootxb.setFont(new Font("Serif", Font.PLAIN, 15));
+		GridBagConstraints gbc_thirdrootxb = new GridBagConstraints();
+		gbc_thirdrootxb.fill = GridBagConstraints.BOTH;
+		gbc_thirdrootxb.insets = new Insets(0, 0, 5, 5);
+		gbc_thirdrootxb.gridx = 4;
+		gbc_thirdrootxb.gridy = 4;
+		jp.add(thirdrootxb, gbc_thirdrootxb);
+		
+		feb = new JButton("F-E");
+		feb.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GridBagConstraints gbc_feb = new GridBagConstraints();
+		gbc_feb.fill = GridBagConstraints.BOTH;
+		gbc_feb.insets = new Insets(0, 0, 9, 5);
+		gbc_feb.gridx = 0;
+		gbc_feb.gridy = 5;
+		jp.add(feb, gbc_feb);
+		
+		expb = new JButton("Exp");
+		expb.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GridBagConstraints gbc_expb = new GridBagConstraints();
+		gbc_expb.fill = GridBagConstraints.BOTH;
+		gbc_expb.insets = new Insets(0, 0, 9, 5);
+		gbc_expb.gridx = 1;
+		gbc_expb.gridy = 5;
+		jp.add(expb, gbc_expb);
+		
+		modb = new JButton("Mod");
+		modb.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GridBagConstraints gbc_modb = new GridBagConstraints();
+		gbc_modb.fill = GridBagConstraints.BOTH;
+		gbc_modb.insets = new Insets(0, 0, 9, 5);
+		gbc_modb.gridx = 2;
+		gbc_modb.gridy = 5;
+		jp.add(modb, gbc_modb);
+		
+		
+		logb = new JButton("log");
+		logb.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		GridBagConstraints gbc_logb = new GridBagConstraints();
+		gbc_logb.fill = GridBagConstraints.BOTH;
+		gbc_logb.insets = new Insets(0, 0, 9, 5);
+		gbc_logb.gridx = 3;
+		gbc_logb.gridy = 5;
+		jp.add(logb, gbc_logb);
+		
+		tentopownb = new JButton("10\u207F");
+		tentopownb.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		GridBagConstraints gbc_tentopownb = new GridBagConstraints();
+		gbc_tentopownb.insets = new Insets(0, 0, 9, 5);
+		gbc_tentopownb.fill = GridBagConstraints.BOTH;
+		gbc_tentopownb.gridx = 4;
+		gbc_tentopownb.gridy = 5;
+		jp.add(tentopownb, gbc_tentopownb);
 		
 		super.jf.getContentPane().setVisible(false);
 		super.jf.getContentPane().setVisible(true);
