@@ -95,6 +95,7 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 		}
 		
 		
+		
 		else if (recentOperator == false){
 			fullStringSize = g.textf.getText().length();
 			try {
@@ -113,12 +114,14 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 				g.textf.setText(g.textf.getText()+"*");
 			
 			fullStringSize = g.textf.getText().length();
-			try {
-				entries.add(g.textf.getText(fullStringSize-1, 1));
-			} catch (BadLocationException e1) {
-				System.out.println(fullStringSize+ " " +previousEntrySize);
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			if(e.getSource() != g.equalsb){
+				try {
+					entries.add(g.textf.getText(fullStringSize-1, 1));
+				} catch (BadLocationException e1) {
+					System.out.println(fullStringSize+ " " +previousEntrySize);
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			this.previousEntrySize = 0;
 			this.recentOperator = true;
@@ -131,6 +134,7 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 		if (e.getSource() == g.equalsb) {
 			equals(g.textf.getText());
 		}
+		
 		System.out.println(previousEntrySize + " " + fullStringSize + " " + entries.toString());
 		
 		
@@ -139,22 +143,66 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 	@Override
 	public double equals(String total) {
 		double count = 0;
+		double totall = 0;
 		fullStringSize = g.textf.getText().length();
-		try {
+		/*try {
 			entries.add(g.textf.getText(fullStringSize-previousEntrySize, previousEntrySize));
 		} catch (BadLocationException e1) {
 			System.out.println(fullStringSize+ " " +previousEntrySize);
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		}*/
+		System.out.println(entries.toString());
+		
+		for (int i = 0; i < entries.size(); i++) {
+			if (entries.get(i).equals("*")){
+				count = multiply(Double.parseDouble(entries.get(i-1)), Double.parseDouble(entries.get(i+1)));
+				entries.set(i, "" + count);
+				entries.remove(i+1);
+				entries.remove(i-1);
+
+				i--;
+				
+				totall = count;
+				System.out.println(entries.toString()  + totall);
+			}
+			if (entries.get(i).equals("/")){
+				count = divide(Double.parseDouble(entries.get(i-1)), Double.parseDouble(entries.get(i+1)));
+				entries.set(i, "" + count);
+				entries.remove(i+1);
+				entries.remove(i-1);
+				
+				i--;
+				totall = count;
+				System.out.println(entries.toString()  + totall);
+			}
 		}
 		
 		for (int i = 0; i < entries.size(); i++) {
-			if (entries.get(i).equals("+"))
-				count += add(Double.parseDouble(entries.get(i-1)), Double.parseDouble(entries.get(i+1)));
+			if (entries.get(i).equals("+")){
+				count = add(Double.parseDouble(entries.get(i-1)), Double.parseDouble(entries.get(i+1)));
+				entries.set(i, "" + count);
+				
+				entries.remove(i+1);
+				entries.remove(i-1);
+				i--;
+				totall = count;
+				System.out.println(entries.toString() + totall);
+			}
+			if (entries.get(i).equals("-")){
+				count = subtract(Double.parseDouble(entries.get(i-1)), Double.parseDouble(entries.get(i+1)));
+				entries.set(i, "" + count);
+				entries.remove(i+1);
+				entries.remove(i-1);
+				
+				i--;
+				totall = count;
+				System.out.println(entries.toString()  + totall);
+			}
 		}
 				
 		
-		g.textf.setText("" + count);
+		g.textf.setText("" + totall);
 		entries.removeAll(entries);
 		recentEquals = true;
 		return 0;
@@ -167,20 +215,17 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 
 	@Override
 	public double subtract(double number1, double number2) {
-		// TODO Auto-generated method stub
-		return 0;
+		return number1-number2;
 	}
 
 	@Override
 	public double divide(double number1, double number2) {
-		// TODO Auto-generated method stub
-		return 0;
+		return number1/number2;
 	}
 
 	@Override
 	public double multiply(double number1, double number2) {
-		// TODO Auto-generated method stub
-		return 0;
+		return number1*number2;
 	}
 
 	

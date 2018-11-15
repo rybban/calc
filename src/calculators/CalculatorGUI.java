@@ -47,6 +47,7 @@ public class CalculatorGUI {
 	JButton plusb;
 	JButton equalsb;
 	JPanel jcp;
+	private JButton button;
 	
 	
 	public CalculatorGUI() {
