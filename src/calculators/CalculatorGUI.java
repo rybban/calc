@@ -24,7 +24,7 @@ public class CalculatorGUI {
 	JButton memoryaddb;
 	JButton memorysubb;
 	JButton backb;
-	JButton cleareverythingb;
+	JButton clearentryb;
 	JButton clearb;
 	JButton plusminusb;
 	JButton squarerootb;
@@ -142,14 +142,14 @@ public class CalculatorGUI {
 		gbc_backb.gridy = 4;
 		jf.getContentPane().add(backb, gbc_backb);
 		
-		cleareverythingb = new JButton("CE");
-		cleareverythingb.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_cleareverythingb = new GridBagConstraints();
-		gbc_cleareverythingb.fill = GridBagConstraints.BOTH;
-		gbc_cleareverythingb.insets = new Insets(0, 0, 5, 5);
-		gbc_cleareverythingb.gridx = 2;
-		gbc_cleareverythingb.gridy = 4;
-		jf.getContentPane().add(cleareverythingb, gbc_cleareverythingb);
+		clearentryb = new JButton("CE");
+		clearentryb.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		GridBagConstraints gbc_clearentryb = new GridBagConstraints();
+		gbc_clearentryb.fill = GridBagConstraints.BOTH;
+		gbc_clearentryb.insets = new Insets(0, 0, 5, 5);
+		gbc_clearentryb.gridx = 2;
+		gbc_clearentryb.gridy = 4;
+		jf.getContentPane().add(clearentryb, gbc_clearentryb);
 		
 		clearb = new JButton("C");
 		clearb.setFont(new Font("Tahoma", Font.PLAIN, 14));

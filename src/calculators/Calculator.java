@@ -43,15 +43,16 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 		g.divideb.addActionListener(this);
 		g.multiplyb.addActionListener(this);
 		g.equalsb.addActionListener(this);
+		g.backb.addActionListener(this);
+		g.commab.addActionListener(this);
+		g.clearb.addActionListener(this);
+		g.clearentryb.addActionListener(this);
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if (recentEquals) {
-			g.textf.setText("");
-			recentEquals = false;
-		}
+		
 		
 		if (e.getSource() == g.oneb) {
 			g.textf.setText(g.textf.getText()+"1");
@@ -93,16 +94,35 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 			g.textf.setText(g.textf.getText()+"0");
 			previousEntrySize++;
 		}
-		
-		
-		
-		else if (recentOperator == false){
-			fullStringSize = g.textf.getText().length();
+		else if (e.getSource() == g.commab){
+			g.textf.setText(g.textf.getText()+".");
+			previousEntrySize++;
+		}
+		else if (e.getSource() == g.backb && !g.textf.getText().equals("")) {
+			previousEntrySize--;
 			try {
-				entries.add(g.textf.getText(fullStringSize-previousEntrySize, previousEntrySize));
+				g.textf.setText(g.textf.getText(0, g.textf.getText().length()-1));
 			} catch (BadLocationException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
+			}
+		}
+		else if (e.getSource() == g.clearb){
+			entries.removeAll(entries);
+			g.textf.setText("");
+		}
+		
+		
+		
+		else if (recentOperator == false && e.getSource() != g.equalsb){
+			fullStringSize = g.textf.getText().length();
+			if (!recentEquals && previousEntrySize > 0){	
+				try {
+					entries.add(g.textf.getText(fullStringSize-previousEntrySize, previousEntrySize));
+				} catch (BadLocationException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			if (e.getSource() == g.plusb)
 				g.textf.setText(g.textf.getText()+"+");
@@ -114,7 +134,7 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 				g.textf.setText(g.textf.getText()+"*");
 			
 			fullStringSize = g.textf.getText().length();
-			if(e.getSource() != g.equalsb){
+			
 				try {
 					entries.add(g.textf.getText(fullStringSize-1, 1));
 				} catch (BadLocationException e1) {
@@ -122,7 +142,7 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-			}
+			
 			this.previousEntrySize = 0;
 			this.recentOperator = true;
 		}
@@ -131,7 +151,13 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 		if (previousEntrySize > 0) {
 			recentOperator = false;
 		}
-		if (e.getSource() == g.equalsb) {
+		
+		if (recentEquals && previousEntrySize > 0) {
+			
+			recentEquals = false;
+		}
+		
+		if (e.getSource() == g.equalsb && recentOperator == false && entries.size() >= 2 && previousEntrySize != 0) {
 			equals(g.textf.getText());
 		}
 		
@@ -145,13 +171,13 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 		double count = 0;
 		double totall = 0;
 		fullStringSize = g.textf.getText().length();
-		/*try {
+		try {
 			entries.add(g.textf.getText(fullStringSize-previousEntrySize, previousEntrySize));
 		} catch (BadLocationException e1) {
 			System.out.println(fullStringSize+ " " +previousEntrySize);
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}*/
+		}
 		System.out.println(entries.toString());
 		
 		for (int i = 0; i < entries.size(); i++) {
@@ -200,10 +226,13 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 				System.out.println(entries.toString()  + totall);
 			}
 		}
-				
 		
+		for (int i = 0; i < entries.size(); i++){
+			if (entries.size() > 1)
+				entries.remove(i);
+		}
+		previousEntrySize = entries.get(0).length();
 		g.textf.setText("" + totall);
-		entries.removeAll(entries);
 		recentEquals = true;
 		return 0;
 	}
