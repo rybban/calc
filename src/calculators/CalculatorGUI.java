@@ -314,7 +314,7 @@ public class CalculatorGUI {
 		gbc_zerob.gridy = 8;
 		jf.getContentPane().add(zerob, gbc_zerob);
 		
-		commab = new JButton(",");
+		commab = new JButton(".");
 		commab.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_commab = new GridBagConstraints();
 		gbc_commab.fill = GridBagConstraints.BOTH;

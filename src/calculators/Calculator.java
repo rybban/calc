@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.text.BadLocationException;
 
@@ -13,6 +14,9 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 	
 	int fullStringSize = 0;
 	int previousEntrySize = 0;
+	int currentEntryNumber = 0;
+	String currentString = "";
+	String totalString = "";
 	ArrayList<String> entries = new ArrayList();
 	boolean recentOperator = false;
 	boolean recentEquals = false;
@@ -47,103 +51,114 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 		g.commab.addActionListener(this);
 		g.clearb.addActionListener(this);
 		g.clearentryb.addActionListener(this);
+		g.squarerootb.addActionListener(this);
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+
+		if ((e.getSource() == g.oneb ||
+				e.getSource() == g.twob ||
+				e.getSource() == g.threeb ||
+				e.getSource() == g.fourb ||
+				e.getSource() == g.fiveb ||
+				e.getSource() == g.sixb ||
+				e.getSource() == g.sevenb ||
+				e.getSource() == g.eightb ||
+				e.getSource() == g.nineb ||
+				e.getSource() == g.zerob ||
+				e.getSource() == g.commab) && !recentEquals) {
+			currentString += ((AbstractButton) e.getSource()).getText();
+			totalString += ((AbstractButton) e.getSource()).getText();
+			g.textf.setText(totalString);
+				previousEntrySize++;
+			if (entries.isEmpty())
+				entries.add(currentString);
+			else if (recentOperator || recentEquals) {
+				currentEntryNumber += 1;
+				entries.add(currentString);
+			}
+			else
+				entries.set(currentEntryNumber, currentString);
+		}
 		
-		
-		
-		if (e.getSource() == g.oneb) {
-			g.textf.setText(g.textf.getText()+"1");
-			previousEntrySize++;
-		}
-		else if (e.getSource() == g.twob) {
-			g.textf.setText(g.textf.getText()+"2");
-			previousEntrySize++;
-		}
-		else if (e.getSource() == g.threeb) {
-			g.textf.setText(g.textf.getText()+"3");
-			previousEntrySize++;
-		}
-		else if (e.getSource() == g.fourb) {
-			g.textf.setText(g.textf.getText()+"4");
-			previousEntrySize++;
-		}
-		else if (e.getSource() == g.fiveb) {
-			g.textf.setText(g.textf.getText()+"5");
-			previousEntrySize++;
-		}
-		else if (e.getSource() == g.sixb) {
-			g.textf.setText(g.textf.getText()+"6");
-			previousEntrySize++;
-		}
-		else if (e.getSource() == g.sevenb) {
-			g.textf.setText(g.textf.getText()+"7");
-			previousEntrySize++;
-		}
-		else if (e.getSource() == g.eightb) {
-			g.textf.setText(g.textf.getText()+"8");
-			previousEntrySize++;
-		}
-		else if (e.getSource() == g.nineb) {
-			g.textf.setText(g.textf.getText()+"9");
-			previousEntrySize++;
-		}
-		else if (e.getSource() == g.zerob) {
-			g.textf.setText(g.textf.getText()+"0");
-			previousEntrySize++;
-		}
-		else if (e.getSource() == g.commab){
-			g.textf.setText(g.textf.getText()+".");
-			previousEntrySize++;
-		}
-		else if (e.getSource() == g.backb && !g.textf.getText().equals("")) {
-			previousEntrySize--;
-			try {
+		else if (e.getSource() == g.backb && !entries.isEmpty()) {
+			String s = entries.get(currentEntryNumber);
+			if (entries.get(entries.size()-1).length() > 1) {
+				
+				if (s.equals("sqrt")){
+					entries.remove(entries.size()-1);
+					currentEntryNumber--;
+				}
+				else if (s.substring(s.length()-2, s.length()-1).equals(".")) {
+					entries.set(currentEntryNumber, s.substring(0, s.length()-2));
+					totalString = totalString.substring(0, totalString.length()-2);
+					currentString = entries.get(currentEntryNumber);
+				}
+				else {
+					entries.set(currentEntryNumber, s.substring(0, s.length()-1));
+					totalString = totalString.substring(0, totalString.length()-1);
+				}
+				previousEntrySize--;
+				
+				
+			}
+			else if (!entries.isEmpty() ) {
+				entries.remove(entries.size()-1);
+				totalString = totalString.substring(0, totalString.length()-1);
+				currentEntryNumber--;
+			}
+			
+			
+			g.textf.setText(totalString);
+			
+			/*try {
 				g.textf.setText(g.textf.getText(0, g.textf.getText().length()-1));
 			} catch (BadLocationException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}
+			}*/
 		}
 		else if (e.getSource() == g.clearb){
 			entries.removeAll(entries);
 			g.textf.setText("");
+			previousEntrySize = 0;
+			currentString = "";
+			totalString = "";
 		}
 		
-		
-		
-		else if (recentOperator == false && e.getSource() != g.equalsb){
-			fullStringSize = g.textf.getText().length();
-			if (!recentEquals && previousEntrySize > 0){	
-				try {
-					entries.add(g.textf.getText(fullStringSize-previousEntrySize, previousEntrySize));
-				} catch (BadLocationException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-			if (e.getSource() == g.plusb)
-				g.textf.setText(g.textf.getText()+"+");
-			else if (e.getSource() == g.minusb)
-				g.textf.setText(g.textf.getText()+"-");
-			else if (e.getSource() == g.divideb)
-				g.textf.setText(g.textf.getText()+"/");
-			else if (e.getSource() == g.multiplyb)
-				g.textf.setText(g.textf.getText()+"*");
-			
-			fullStringSize = g.textf.getText().length();
-			
-				try {
-					entries.add(g.textf.getText(fullStringSize-1, 1));
-				} catch (BadLocationException e1) {
-					System.out.println(fullStringSize+ " " +previousEntrySize);
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			
+		else if(!recentOperator && e.getSource() == g.squarerootb) {
+			currentString = ((AbstractButton) e.getSource()).getText();
+			totalString += currentString;
+			currentString = "sqrt";
+			g.textf.setText(totalString);
+			currentEntryNumber++;
+			entries.add(currentString);
+			currentString = "";
 			this.previousEntrySize = 0;
+			this.recentOperator = true;
+		}
+		
+		else if (recentOperator == false && e.getSource() != g.equalsb && previousEntrySize > 0){
+			fullStringSize = g.textf.getText().length();
+			if (e.getSource() == g.plusb ||
+					e.getSource() == g.minusb ||
+					e.getSource() == g.divideb ||
+					e.getSource() == g.multiplyb) {
+				currentEntryNumber += 1;
+				currentString = ((AbstractButton) e.getSource()).getText();
+				totalString += currentString;
+				g.textf.setText(totalString);
+
+				entries.add(currentString);
+				currentString = "";
+				this.previousEntrySize = 0;
+			}
+			
+			
+			
+			fullStringSize = g.textf.getText().length();
+			
 			this.recentOperator = true;
 		}
 		
@@ -152,7 +167,7 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 			recentOperator = false;
 		}
 		
-		if (recentEquals && previousEntrySize > 0) {
+		if (recentOperator) {
 			
 			recentEquals = false;
 		}
@@ -161,24 +176,51 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 			equals(g.textf.getText());
 		}
 		
-		System.out.println(previousEntrySize + " " + fullStringSize + " " + entries.toString());
 		
 		
+		if (entries.isEmpty()) {
+			totalString = "";
+			currentString = "";
+			previousEntrySize = 0;
+			currentEntryNumber = 0;
+			recentEquals = false;
+			recentOperator = false;
+		}
+		
+		g.textf.setText(totalString);
+		System.out.println(previousEntrySize + " " + currentEntryNumber + " " + entries.toString());
+		
+		
+	
 	}
+	
+	public void addStringFromTextField(String s) {
+		String workingString = "";
+		char[] ca = s.toCharArray();
+		for (char c : ca) {
+			if (c == '1' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6' || c == '7' || c == '8' || c == '9' || c == '0' || c == '.') {
+				workingString += c;
+			}
+			else if (c == '+' || c == '-' || c == '/' || c == '*' ) {
+				entries.add(workingString);
+				workingString = ""+c;
+				entries.add(workingString);
+				workingString = "";
+			}	
+		}
+		//entries.add(workingString);
+	}
+	
 	
 	@Override
 	public double equals(String total) {
 		double count = 0;
 		double totall = 0;
 		fullStringSize = g.textf.getText().length();
-		try {
-			entries.add(g.textf.getText(fullStringSize-previousEntrySize, previousEntrySize));
-		} catch (BadLocationException e1) {
-			System.out.println(fullStringSize+ " " +previousEntrySize);
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+
 		System.out.println(entries.toString());
+		
+		
 		
 		for (int i = 0; i < entries.size(); i++) {
 			if (entries.get(i).equals("*")){
@@ -232,8 +274,11 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 				entries.remove(i);
 		}
 		previousEntrySize = entries.get(0).length();
-		g.textf.setText("" + totall);
+		
+		totalString = "" + totall;
+		g.textf.setText(totalString);
 		recentEquals = true;
+		currentEntryNumber = 0;
 		return 0;
 	}
 	
@@ -255,6 +300,11 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 	@Override
 	public double multiply(double number1, double number2) {
 		return number1*number2;
+	}
+
+	@Override
+	public double squareroot(double number1) {
+		return Math.sqrt(number1);
 	}
 
 	
