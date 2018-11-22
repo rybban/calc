@@ -75,20 +75,25 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 			if (entries.isEmpty())
 				entries.add(currentString);
 			else if (recentOperator || recentEquals) {
-				currentEntryNumber += 1;
+				
 				entries.add(currentString);
 			}
-			else
+			else if (entries.get(currentEntryNumber).matches("[0-9]"))
 				entries.set(currentEntryNumber, currentString);
+			else
+				entries.add(currentString);
 		}
 		
 		else if (e.getSource() == g.backb && !entries.isEmpty()) {
-			String s = entries.get(currentEntryNumber);
+			System.out.println(""+currentEntryNumber);
+			String s = entries.get(entries.size()-1);
 			if (entries.get(entries.size()-1).length() > 1) {
 				
 				if (s.equals("sqrt")){
 					entries.remove(entries.size()-1);
 					currentEntryNumber--;
+					totalString = totalString.substring(0, totalString.length()-1);
+					
 				}
 				else if (s.substring(s.length()-2, s.length()-1).equals(".")) {
 					entries.set(currentEntryNumber, s.substring(0, s.length()-2));
@@ -98,6 +103,7 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 				else {
 					entries.set(currentEntryNumber, s.substring(0, s.length()-1));
 					totalString = totalString.substring(0, totalString.length()-1);
+					currentString = entries.get(currentEntryNumber);
 				}
 				previousEntrySize--;
 				
@@ -186,8 +192,12 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 			recentEquals = false;
 			recentOperator = false;
 		}
+		else
+			currentEntryNumber = entries.size()-1;
 		
 		g.textf.setText(totalString);
+		
+		
 		System.out.println(previousEntrySize + " " + currentEntryNumber + " " + entries.toString());
 		
 		
@@ -220,7 +230,15 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 
 		System.out.println(entries.toString());
 		
-		
+		for (int i = 0; i < entries.size(); i++) {
+			if (entries.get(i).equals("sqrt")){
+				count = squareroot(Double.parseDouble(entries.get(i+1)));
+				entries.set(i, "" + count);
+				entries.remove(i+1);
+				
+				totall = count;
+			}
+		}
 		
 		for (int i = 0; i < entries.size(); i++) {
 			if (entries.get(i).equals("*")){
