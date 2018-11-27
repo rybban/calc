@@ -24,14 +24,14 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 	
 	double total;
 	CalculatorGUI g;
-	public Calculator(int type) {
-		if (type == 1) {
-			g = new CalculatorGUI();
-			
-		}
-		else if (type == 2) {
+	public Calculator() {
+		
+		if (this instanceof SciCalculator)
 			g = new SciCalculatorGUI();
-		}
+		else if (this instanceof Calculator)
+			g = new CalculatorGUI();
+		
+		
 		g.oneb.addActionListener(this);
 		g.twob.addActionListener(this);
 		g.threeb.addActionListener(this);
@@ -78,8 +78,8 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 				
 				entries.add(currentString);
 			}
-			else if (entries.get(currentEntryNumber).matches("[0-9]"))
-				entries.set(currentEntryNumber, currentString);
+			else if (entries.get(currentEntryNumber).matches("[0-9]+"))
+				entries.set(currentEntryNumber, entries.get(currentEntryNumber) + ((AbstractButton) e.getSource()).getText());
 			else
 				entries.add(currentString);
 		}
@@ -106,12 +106,13 @@ public class Calculator implements ActionListener, CalculatorBasicOperations {
 					currentString = entries.get(currentEntryNumber);
 				}
 				previousEntrySize--;
-				
+				recentOperator = false;
 				
 			}
 			else if (!entries.isEmpty() ) {
 				entries.remove(entries.size()-1);
 				totalString = totalString.substring(0, totalString.length()-1);
+				currentString = "";
 				currentEntryNumber--;
 			}
 			
